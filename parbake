@@ -1,69 +1,111 @@
 #!/bin/bash
  
-# Rebuilds parbaked project from it's git repositories
+# Reinstalls parbaked project from it's git repositories
 # Jason D Snider <jason@jasonsnider.com>
-
-#Load the config file
-echo 'Loading configuration...'
-source config
 
 COMMAND="$1"
 
+#has at least 1 argument been passed
 if [ $# -ne 1 ]
 then
     echo "Usage: $0 {COMMAND}"
-    echo "What would you like to do? (build, status, push, pull)."
-    exit 1
+    echo "What would you like to do? (install, status, push, pull)."
+    exit
 else
+
+	#Check for a vaild command
+	if [ "$COMMAND" != "install" ] && [ "$COMMAND" != "status" ] && [ "$COMMAND" != "push" ] && [ "$COMMAND" != "pull" ]
+	then
+		echo "Invalid Command Argument $COMMAND"
+		exit
+	fi
+
+	#Load the config file
+	if [ ! -f config ]
+	then
+		echo 'The config file could not be found'
+		exit
+	else
+		echo 'Loading configuration...'
+		source config
+	fi
+
 	echo "The installer is running with the $COMMAND command"
 fi
 
 # Remove all project files and reinstall them from the repositories
-if [ "$COMMAND" == "build" ] 
+if [ "$COMMAND" == "install" ] 
 then
-	rm "$PROJECT_PATH/app" -fR
+	echo "Removing previous installations as $AS"
+	if [ "AS" == "root" ]
+	then
+		su root
+		rm "$PROJECT_PATH/app" -fR
+		su $USER
+	else
+		sudo rm "$PROJECT_PATH/app" -fR
+	fi
 	for REPO in $REPOS
 	do
 		IFS=',' read -a array <<< "$REPO"
-		cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
+		if [[ $REPO != --* ]]
+		then
+            cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
+		else
+			echo "${array[0]}"
+		fi
 	done
 fi 
 
 # Pull the latest updates from all repositories
 if [ "$COMMAND" == "pull" ]
 then
-
-        for REPO in $REPOS
-        do
-                IFS=',' read -a array <<< "$REPO"
-                cd $PROJECT_PATH${array[0]}/${array[1]} && git pull origin master
-        done
+    for REPO in $REPOS
+    do
+		IFS=',' read -a array <<< "$REPO"
+		if [[ $REPO != --* ]]
+		then
+            cd $PROJECT_PATH${array[0]} && git pull origin master
+		else
+			echo "${array[0]}"
+		fi
+    done
 fi
 
 # Check the status of all repositories to which you have write access
 if [ "$COMMAND" == "status" ] 
 then
-        for REPO in $REPOS
-        do
-                IFS=',' read -a array <<< "$REPO"
-		if [ "${array[3]}" == "write" ] 
+    for REPO in $REPOS
+	do
+		IFS=',' read -a array <<< "$REPO"
+		if [[ $REPO != --* ]]
 		then
-                	cd $PROJECT_PATH${array[0]}/${array[1]} && git status
+			if [ "${array[3]}" == "write" ] 
+			then
+				cd $PROJECT_PATH${array[0]}/${array[1]} && git status
+			fi
+		else
+			echo "${array[0]}"
 		fi
-        done
+    done
 fi
 
 # Push all changes to all repositories to which you have wrte access
 if [ "$COMMAND" == "push" ]
 then
-        for REPO in $REPOS
-        do
-                IFS=',' read -a array <<< "$REPO"
-                if [ "${array[3]}" == "write" ]
-                then
-                        cd $PROJECT_PATH${array[0]}/${array[1]} && git pull origin master
-                fi
-        done
+    for REPO in $REPOS
+    do
+		IFS=',' read -a array <<< "$REPO"
+		if [[ $REPO != --* ]]
+		then
+			if [ "${array[3]}" == "write" ] 
+			then
+		 		cd $PROJECT_PATH${array[0]}/${array[1]} && git pull origin master
+			fi
+		else
+			echo "${array[0]}"
+		fi
+    done
 fi
 
 if [ "AS" == "root" ]
@@ -74,9 +116,9 @@ then
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
 else
-        sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
-        sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
-        sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
+    sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
+    sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
+    sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
 
 fi
 

@@ -1,24 +1,26 @@
 #!/bin/bash
 
-PROJECT_PATH="/var/www/jasonsnider.com"
-APACHE_PROCESS="www-data"
-USER="jsnider"
+PROJECT_PATH="/var/www/parbake.org" #Path to the project, the folder into which the app directory will be deployed
+APACHE_PROCESS="www-data" #Apache process, probably www-data
+USER="user" #probably your user name
+AS='sudo' #sudo or root
 
+#All of the repositories that make up your project
 REPOS="
-	##App
+	--App
 	/,app,git@github.com:parbake/parbake.git,write
-	##Config
-	/app,Config,ssh://git@bitbucket.org/parbake/Config.git,write
-	##Parbake Plugins
+	--Config
+	/app,Config,git@github.com:parbake/Config.git,write
+	--Parbake_Plugins
 	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
 	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
 	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
-	##Third Party Plugins
+	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
-	##CakePHP and CakeDC Plugins
+	--CakePHP_and_CakeDC_Plugins
 	/app/Plugin,Tags,https://github.com/CakeDC/tags.git,read
 	/app/Plugin,Search,https://github.com/CakeDC/search.git,read
 	/app/Plugin,DebugKit,https://github.com/cakephp/debug_kit.git,read
-	##Vendors
+	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 "
