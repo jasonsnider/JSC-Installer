@@ -1,0 +1,129 @@
+#!/bin/bash
+ 
+# Rebuilds parbaked project from it's git repositories
+# Jason D Snider <jason@jasonsnider.com>
+
+# Configure the build script
+PROJECT_PATH="/var/www/jasonsnider.com"
+APACHE_PROCESS="www-data"
+USER="jsnider"
+AS="sudo" #root or sudo
+
+##App
+#/,app,git@github.com:parbake/parbake.git,write
+##Config
+#/app,Config,ssh://git@bitbucket.org/parbake/Config.git,write
+##Parbake Plugins
+#/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
+#/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
+#/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
+##Third Party Plugins
+#/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
+##CakePHP and CakeDC Plugins
+#/app/Plugin,Tags,https://github.com/CakeDC/tags.git,read
+#/app/Plugin,Search,https://github.com/CakeDC/search.git,read
+#/app/Plugin,DebugKit,https://github.com/cakephp/debug_kit.git,read
+##Vendors
+#/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
+
+REPOS="
+	##App
+	/,app,git@github.com:parbake/parbake.git,write
+	##Config - AFTER INSTALL CHANGE THIS TO A PRIVATE REPOSITORY
+	/app,Config,ssh://git@bitbucket.org/jasonsnider/config-jasonsnider.com.git,write
+	##Parbake Plugins
+	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
+	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
+	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
+	##Third Party Plugins
+	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
+	##CakePHP and CakeDC Plugins
+	/app/Plugin,Tags,https://github.com/CakeDC/tags.git,read
+	/app/Plugin,Search,https://github.com/CakeDC/search.git,read
+	/app/Plugin,DebugKit,https://github.com/cakephp/debug_kit.git,read
+	##Vendors
+	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
+	## Project specific repositories
+	/app/Plugin,Jsc,git@github.com:jasonsnider/Jsc-plugin.git,write
+	/app/Plugin,Parbake,git@github.com:jasonsnider/Parbake-plugin.git,write
+	## Project Theme(s)
+	/app/View/Themed,JasonSniderTbs,git@github.com:jasonsnider/JasonSniderTbs-theme.git,write
+"
+COMMAND="$1"
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: $0 {COMMAND}"
+    echo "What would you like to do? (build, status, push, pull)."
+    exit 1
+else
+	echo "The installer is running with the $COMMAND command"
+fi
+
+# Remove all project files and reinstall them from the repositories
+if [ "$COMMAND" == "build" ] 
+then
+	rm "$PROJECT_PATH/app" -fR
+	for REPO in $REPOS
+	do
+		IFS=',' read -a array <<< "$REPO"
+		cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
+	done
+fi 
+
+# Pull the latest updates from all repositories
+if [ "$COMMAND" == "pull" ]
+then
+
+        for REPO in $REPOS
+        do
+                IFS=',' read -a array <<< "$REPO"
+                cd $PROJECT_PATH${array[0]}/${array[1]} && git pull origin master
+        done
+fi
+
+# Check the status of all repositories to which you have write access
+if [ "$COMMAND" == "status" ] 
+then
+        for REPO in $REPOS
+        do
+                IFS=',' read -a array <<< "$REPO"
+		if [ "${array[3]}" == "write" ] 
+		then
+                	cd $PROJECT_PATH${array[0]}/${array[1]} && git status
+		fi
+        done
+fi
+
+# Push all changes to all repositories to which you have wrte access
+if [ "$COMMAND" == "push" ]
+then
+        for REPO in $REPOS
+        do
+                IFS=',' read -a array <<< "$REPO"
+                if [ "${array[3]}" == "write" ]
+                then
+                        cd $PROJECT_PATH${array[0]}/${array[1]} && git pull origin master
+                fi
+        done
+fi
+
+if [ "AS" == "root" ]
+then
+	su root
+
+	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
+	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
+	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
+else
+        sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
+        sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
+        sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
+
+fi
+
+
+
+
+
+
