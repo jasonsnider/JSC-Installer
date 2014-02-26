@@ -1,7 +1,7 @@
-install
-=======
+# The Parbake Project (Installer)
 
-An installer and maintenance package for The Parbake Project
+A git based installer and maintenance shell for The Parbake Project. This shell will allow you to install a default
+or custom varriant of The Parbake Project.
 
 ## Configuration
 The sample configuration file is named config.default. Copy this to a file named config and set the proper 
