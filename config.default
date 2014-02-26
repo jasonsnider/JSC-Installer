@@ -2,8 +2,8 @@
 
 PROJECT_PATH="/var/www/parbake.org" #Path to the project, the folder into which the app directory will be deployed
 APACHE_PROCESS="www-data" #Apache process, probably www-data
-USER="user" #probably your user name
-AS='sudo' #sudo or root
+USER="user" #probably the user name you used to log on to this machine with
+AS='sudo' #sudo or root depending on the OS Ubuntu would probably be sudo, Debian would probably be root
 
 #All of the repositories that make up your project
 REPOS="
@@ -24,3 +24,5 @@ REPOS="
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 "
+
+
