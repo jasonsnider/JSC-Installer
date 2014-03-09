@@ -3,35 +3,43 @@
 # Reinstalls parbaked project from it's git repositories
 # Jason D Snider <jason@jasonsnider.com>
 
-COMMAND="$1"
+COMMAND=$1
+CONFIGURATION=$2
 
-#has at least 1 argument been passed
-if [ $# -ne 1 ]
-then
-    echo "Usage: $0 {COMMAND}"
-    echo "What would you like to do? (install, status, push, pull)."
-    exit
-else
-
-	#Check for a vaild command
-	if [ "$COMMAND" != "install" ] && [ "$COMMAND" != "status" ] && [ "$COMMAND" != "push" ] && [ "$COMMAND" != "pull" ]
+# has a COMMAND been requsted?
+if [ $# -lt 1 ]
 	then
-		echo "Invalid Command Argument $COMMAND"
+		echo "Usage: $0 {COMMAND} {CONFIGURATION}"
+		echo "What would you like to do? (install, status, push, pull)."
 		exit
-	fi
-
-	#Load the config file
-	if [ ! -f config ]
-	then
-		echo 'The config file could not be found'
-		exit
-	else
-		echo 'Loading configuration...'
-		source config
-	fi
-
-	echo "The installer is running with the $COMMAND command"
 fi
+
+# has a configuration been requested?
+if [ $# -ne 2 ]
+then
+    echo "Usage: $0 {COMMAND} {CONFIGURATION}"
+    echo "What configuration would you like to load?"
+    exit
+fi
+
+#Check for a vaild command
+if [ "$COMMAND" != "install" ] && [ "$COMMAND" != "status" ] && [ "$COMMAND" != "push" ] && [ "$COMMAND" != "pull" ]
+then
+	echo "Invalid Command Argument $COMMAND"
+	exit
+fi
+
+#Check for a valid configuration
+if [ ! -f "config/$CONFIGURATION" ]
+then
+	echo 'The config file could not be found'
+	exit
+else
+	echo 'Loading configuration...'
+	source "config/$CONFIGURATION"
+fi
+
+echo "The installer is running with the $COMMAND command"
 
 # Remove all project files and reinstall them from the repositories
 if [ "$COMMAND" == "install" ] 
