@@ -58,9 +58,9 @@ Once you have configured the system be sure to make the parbake file executable
 chmod +x parbake #as root or sudo
 ````
 
-Call the parbake shell with a single argument (For the sake of argument I'm calling it a command).
+The parbake shell accepts two arguments: command and configuration.
 ````
-./parbake {COMMAND}
+./parbake {COMMAND} {CONFIGURATION}
 ````
 
 There are 4 commands with which to call the parbake shell.
