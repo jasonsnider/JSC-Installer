@@ -8,13 +8,13 @@ AS='sudo' #sudo or root depending on the OS Ubuntu would probably be sudo, Debia
 #All of the repositories that make up your project
 REPOS="
 	--App
-	/,app,git@github.com:parbake/parbake.git,read
+	/,app,git@github.com:parbake/parbake.git,write
 	--Config
-	/app,Config,git@github.com:parbake/Config.git,read
+	/app,Config,git@github.com:parbake/Config.git,write
 	--Parbake_Plugins
-	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,read
-	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,read
-	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,read
+	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
+	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
+	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
 	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
 	--CakePHP_and_CakeDC_Plugins
