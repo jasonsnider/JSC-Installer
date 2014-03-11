@@ -53,12 +53,14 @@ then
 	else
 		sudo rm "$PROJECT_PATH/app" -fR
 	fi
+
 	for REPO in $REPOS
 	do
 		IFS=',' read -a array <<< "$REPO"
 		if [[ $REPO != --* ]]
 		then
-            cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
+			echo "cd $PROJECT_PATH${array[0]} && $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}"
+            		cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
 		else
 			echo "${array[0]}"
 		fi
