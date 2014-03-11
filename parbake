@@ -1,6 +1,6 @@
 #!/bin/bash
  
-# Reinstalls parbaked project from it's git repositories
+# Performs basic admin functions against a parbaked project.
 # Jason D Snider <jason@jasonsnider.com>
 
 COMMAND=$1
@@ -8,10 +8,10 @@ CONFIGURATION=$2
 
 # has a COMMAND been requsted?
 if [ $# -lt 1 ]
-	then
-		echo "Usage: $0 {COMMAND} {CONFIGURATION}"
-		echo "What would you like to do? (install, status, push, pull)."
-		exit
+then
+	echo "Usage: $0 {COMMAND} {CONFIGURATION}"
+	echo "What would you like to do? (install, status, push, pull)."
+	exit
 fi
 
 # has a configuration been requested?
@@ -61,6 +61,7 @@ then
 		then
 			echo "cd $PROJECT_PATH${array[0]} && $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}"
             		cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
+			echo "------------------------------------------------------------"
 		else
 			echo "${array[0]}"
 		fi
@@ -75,7 +76,9 @@ then
 		IFS=',' read -a array <<< "$REPO"
 		if [[ $REPO != --* ]]
 		then
-            cd $PROJECT_PATH${array[0]} && git pull origin master
+			echo "cd $PROJECT_PATH${array[0]} && git pull origin master"
+            		cd $PROJECT_PATH${array[0]} && git pull origin master
+			echo "------------------------------------------------------------"
 		else
 			echo "${array[0]}"
 		fi
@@ -92,7 +95,9 @@ then
 		then
 			if [ "${array[3]}" == "write" ] 
 			then
+				echo "cd $PROJECT_PATH${array[0]}/${array[1]} && git status"
 				cd $PROJECT_PATH${array[0]}/${array[1]} && git status
+				echo "------------------------------------------------------------"
 			fi
 		else
 			echo "${array[0]}"
@@ -110,7 +115,9 @@ then
 		then
 			if [ "${array[3]}" == "write" ] 
 			then
-		 		cd $PROJECT_PATH${array[0]}/${array[1]} && git pull origin master
+				echo "cd $PROJECT_PATH${array[0]}/${array[1]} && git push origin master"
+		 		cd $PROJECT_PATH${array[0]}/${array[1]} && git push origin master
+				echo "------------------------------------------------------------"
 			fi
 		else
 			echo "${array[0]}"
@@ -120,20 +127,17 @@ fi
 
 if [ "AS" == "root" ]
 then
+	echo "Setting ownership as root."
 	su root
 
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
 else
-    sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
-    sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
-    sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
-
+	echo "Setting ownership as a sudo'd user."
+	sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
+	sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
+	sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
 fi
 
-
-
-
-
-
+echo "Done!"
