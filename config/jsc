@@ -6,25 +6,25 @@ USER="jsnider"
 AS="sudo" #root or sudo
 
 REPOS="
-        --App
-        /,app,git@github.com:parbake/parbake.git,write
-        --Config
-        /app,Config,ssh://git@bitbucket.org/jasonsnider/config-jasonsnider.com.git,write
-        --Parbake_Plugins
-        /app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
-        /app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
-        /app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
-        --Third_Party_Plugins
-        /app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
-        --CakePHP_and_CakeDC_Plugins
-        /app/Plugin,Tags,https://github.com/CakeDC/tags.git,read
-        /app/Plugin,Search,https://github.com/CakeDC/search.git,read
-        /app/Plugin,DebugKit,https://github.com/cakephp/debug_kit.git,read
-        --Vendors
-        /app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
-        --Project_specific_repositories
-        /app/Plugin,Jsc,git@github.com:jasonsnider/Jsc-plugin.git,write
-        /app/Plugin,Parbake,git@github.com:jasonsnider/Parbake-plugin.git,write
-        --Project_Theme(s)
-        /app/View/Themed,JasonSniderTbs,git@github.com:jasonsnider/JasonSniderTbs-theme.git,write
+	--App
+	/,app,git@github.com:parbake/parbake.git,write
+	--Config
+	/app,Config,ssh://git@bitbucket.org/jasonsnider/config-jasonsnider.com.git,write
+	--Parbake_Plugins
+	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
+	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
+	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
+	--Third_Party_Plugins
+	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
+	--CakePHP_and_CakeDC_Plugins
+	/app/Plugin,Tags,https://github.com/CakeDC/tags.git,read
+	/app/Plugin,Search,https://github.com/CakeDC/search.git,read
+	/app/Plugin,DebugKit,https://github.com/cakephp/debug_kit.git,read
+	--Vendors
+	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
+	--Project_specific_repositories
+	/app/Plugin,Jsc,git@github.com:jasonsnider/Jsc-plugin.git,write
+	/app/Plugin,Parbake,git@github.com:jasonsnider/Parbake-plugin.git,write
+	--Project_Theme(s)
+	/app/View/Themed,JasonSniderTbs,git@github.com:jasonsnider/JasonSniderTbs-theme.git,write
 "

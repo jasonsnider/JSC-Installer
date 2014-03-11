@@ -1,5 +1,5 @@
 #!/bin/bash
-# Configure the build script
+# sarahsniderlmt.com
 PROJECT_PATH="/var/www/sarahsniderlmt.com"
 APACHE_PROCESS="www-data"
 USER="jsnider"
@@ -26,6 +26,6 @@ REPOS="
 	/app/Plugin,Sarah,ssh://git@bitbucket.org/jasonsnider/Sarah-plugin.git,write
 	--Project_Theme(s)
 	/app/View/Themed,SarahSnider,ssh://git@bitbucket.org/jasonsnider/SarahSnider-theme.git,write
-	"
+"
 
 
