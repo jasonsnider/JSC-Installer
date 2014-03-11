@@ -43,15 +43,17 @@ whitespace (as this is a delimiter) instead we use underscores as whitespace.
 Each element is further delimited by commas and contains 4 sections. The first being the location in to which a 
 repository will be cloned. The second is the name of the directory the repository will be cloned as. The third is the 
 location of the repository itself. The fourth is as read/write, this should only be set to write if you have write 
-access to the repository. This simply tells the shell to skip this repos when running a push or a status command.
+access to the repository. By default, all repositories are set to read, this is not a security feature this simply 
+tells the shell to skip this repos when running a push or a status command. Attempting to push to a repo for which you 
+do not have write access will result in an error. It is up to the repositories admins to set the read/write 
+permissions.
 
 ````
-/,app,git@github.com:parbake/parbake.git,write
+/,app,git@github.com:parbake/parbake.git,read
 ````
 
 An element in the repos array is a comma separated string containing 4 elements. The first is the directory in to 
 which
-
 
 Once you have configured the system be sure to make the parbake file executable
 ````
@@ -88,11 +90,3 @@ The status command run a status check against your local code in case you have f
 
 The push command will push all of your commits to each repository listed in the REPOS array, assuming you have write 
 access to that repository.
-
-
-
-
-
-
-
-
