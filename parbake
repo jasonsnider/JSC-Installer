@@ -9,9 +9,9 @@ CONFIGURATION=$2
 # has a COMMAND been requsted?
 if [ $# -lt 1 ]
 then
-	echo "Usage: $0 {COMMAND} {CONFIGURATION}"
-	echo "What would you like to do? (install, status, push, pull)."
-	exit
+    echo "Usage: $0 {COMMAND} {CONFIGURATION}"
+    echo "What would you like to do? (install, status, push, pull)."
+    exit
 fi
 
 # has a configuration been requested?
@@ -25,18 +25,18 @@ fi
 #Check for a vaild command
 if [ "$COMMAND" != "install" ] && [ "$COMMAND" != "status" ] && [ "$COMMAND" != "push" ] && [ "$COMMAND" != "pull" ]
 then
-	echo "Invalid Command Argument $COMMAND"
-	exit
+    echo "Invalid Command Argument $COMMAND"
+    exit
 fi
 
 #Check for a valid configuration
 if [ ! -f "config/$CONFIGURATION" ]
 then
-	echo 'The config file could not be found'
-	exit
+    echo 'The config file could not be found'
+    exit
 else
-	echo 'Loading configuration...'
-	source "config/$CONFIGURATION"
+    echo 'Loading configuration...'
+    source "config/$CONFIGURATION"
 fi
 
 echo "The installer is running with the $COMMAND command"
@@ -44,28 +44,28 @@ echo "The installer is running with the $COMMAND command"
 # Remove all project files and reinstall them from the repositories
 if [ "$COMMAND" == "install" ] 
 then
-	echo "Removing previous installations as $AS"
-	if [ "AS" == "root" ]
-	then
-		su root
-		rm "$PROJECT_PATH/app" -fR
-		su $USER
-	else
-		sudo rm "$PROJECT_PATH/app" -fR
-	fi
+    echo "Removing previous installations as $AS"
+    if [ "AS" == "root" ]
+    then
+        su root
+        rm "$PROJECT_PATH/app" -fR
+        su $USER
+    else
+        sudo rm "$PROJECT_PATH/app" -fR
+    fi
 
-	for REPO in $REPOS
-	do
-		IFS=',' read -a array <<< "$REPO"
-		if [[ $REPO != --* ]]
-		then
-			echo "cd $PROJECT_PATH${array[0]} && $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}"
-            		cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
-			echo "------------------------------------------------------------"
-		else
-			echo "${array[0]}"
-		fi
-	done
+    for REPO in $REPOS
+    do
+        IFS=',' read -a array <<< "$REPO"
+        if [[ $REPO != --* ]]
+        then
+            echo "cd $PROJECT_PATH${array[0]} && $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}"
+            cd $PROJECT_PATH${array[0]} && git clone ${array[2]} ${array[1]}
+            echo "------------------------------------------------------------"
+        else
+            echo "${array[0]}"
+        fi
+    done
 fi 
 
 # Pull the latest updates from all repositories
@@ -73,15 +73,15 @@ if [ "$COMMAND" == "pull" ]
 then
     for REPO in $REPOS
     do
-		IFS=',' read -a array <<< "$REPO"
-		if [[ $REPO != --* ]]
-		then
-			echo "cd $PROJECT_PATH${array[0]} && git pull origin master"
-            		cd $PROJECT_PATH${array[0]} && git pull origin master
-			echo "------------------------------------------------------------"
-		else
-			echo "${array[0]}"
-		fi
+        IFS=',' read -a array <<< "$REPO"
+        if [[ $REPO != --* ]]
+        then
+            echo "cd $PROJECT_PATH${array[0]} && git pull origin master"
+            cd $PROJECT_PATH${array[0]} && git pull origin master
+            echo "------------------------------------------------------------"
+        else
+            echo "${array[0]}"
+        fi
     done
 fi
 
@@ -89,7 +89,7 @@ fi
 if [ "$COMMAND" == "status" ] 
 then
     for REPO in $REPOS
-	do
+    do
 		IFS=',' read -a array <<< "$REPO"
 		if [[ $REPO != --* ]]
 		then
@@ -110,18 +110,18 @@ if [ "$COMMAND" == "push" ]
 then
     for REPO in $REPOS
     do
-		IFS=',' read -a array <<< "$REPO"
-		if [[ $REPO != --* ]]
-		then
-			if [ "${array[3]}" == "write" ] 
-			then
-				echo "cd $PROJECT_PATH${array[0]}/${array[1]} && git push origin master"
-		 		cd $PROJECT_PATH${array[0]}/${array[1]} && git push origin master
-				echo "------------------------------------------------------------"
-			fi
-		else
-			echo "${array[0]}"
-		fi
+        IFS=',' read -a array <<< "$REPO"
+        if [[ $REPO != --* ]]
+        then
+            if [ "${array[3]}" == "write" ] 
+            then
+                    echo "cd $PROJECT_PATH${array[0]}/${array[1]} && git push origin master"
+                    cd $PROJECT_PATH${array[0]}/${array[1]} && git push origin master
+                    echo "------------------------------------------------------------"
+            fi
+        else
+            echo "${array[0]}"
+        fi
     done
 fi
 

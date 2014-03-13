@@ -6,6 +6,7 @@ USER="user" #probably the user name you used to log on to this machine with
 AS='sudo' #sudo or root depending on the OS Ubuntu would probably be sudo, Debian would probably be root
 
 #All of the repositories that make up your project
+#Path, Directory, Repository, Privs (by default all privs are read only) 
 REPOS="
 	--App
 	/,app,git@github.com:parbake/parbake.git,read
