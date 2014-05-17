@@ -130,11 +130,11 @@ then
 	echo "Setting ownership as root."
 	su root
 
-	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
+	#chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
 	chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR
 else
-	echo "Setting ownership as a sudo'd user."
+	#echo "Setting ownership as a sudo'd user."
 	sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/lib/Cake/Cache -fR
 	sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/tmp -fR
 	sudo chown "$APACHE_PROCESS":"$USER" -fR "$PROJECT_PATH"/app/Vendor/HtmlPurifier/library/HTMLPurifier/DefinitionCache/Serializer -fR

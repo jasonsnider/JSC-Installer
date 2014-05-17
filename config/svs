@@ -2,7 +2,7 @@
 # sarahsniderlmt.com
 PROJECT_PATH="/var/www/sarahsniderlmt.com"
 APACHE_PROCESS="www-data"
-USER="jsnider"
+USER="jasonsnider"
 AS="sudo" #root or sudo
 
 REPOS="

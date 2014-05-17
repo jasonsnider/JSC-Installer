@@ -2,7 +2,7 @@
 # jasonsnider.com
 PROJECT_PATH="/var/www/jasonsnider.com"
 APACHE_PROCESS="www-data"
-USER="jsnider"
+USER="jasonsnider"
 AS="sudo" #root or sudo
 
 REPOS="
@@ -24,7 +24,8 @@ REPOS="
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 	--Project_specific_repositories
 	/app/Plugin,Jsc,git@github.com:jasonsnider/Jsc-plugin.git,write
-	/app/Plugin,Parbake,git@github.com:jasonsnider/Parbake-plugin.git,write
 	--Project_Theme(s)
 	/app/View/Themed,JasonSniderTbs,git@github.com:jasonsnider/JasonSniderTbs-theme.git,write
 "
+
+#	/app/Plugin,Parbake,git@github.com:jasonsnider/Parbake-plugin.git,write
