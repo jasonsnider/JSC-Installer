@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_PATH="/var/www/parbake.org" #Path to the project, the folder into which the app directory will be deployed
+PROJECT_PATH="/var/www/jsc.org" #Path to the project, the folder into which the app directory will be deployed
 APACHE_PROCESS="www-data" #Apache process, probably www-data
 USER="user" #probably the user name you used to log on to this machine with
 AS='sudo' #sudo or root depending on the OS Ubuntu would probably be sudo, Debian would probably be root
@@ -12,7 +12,7 @@ REPOS="
 	/,app,git@github.com:parbake/parbake.git,read
 	--Config
 	/app,Config,git@github.com:parbake/Config.git,read
-	--Parbake_Plugins
+	--JSC_Plugins
 	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,read
 	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,read
 	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,read

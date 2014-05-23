@@ -1,14 +1,14 @@
-# The Parbake Project (Installer)
+# JSC (Installer)
 
-A git based installer and maintenance shell for The Parbake Project. This shell will allow you to install a default
-or custom varriant of The Parbake Project.
+A git based installer and maintenance shell for JSC. This shell will allow you to install a default
+or custom varriant of JSC.
 
 ## Configuration
 The sample configuration file is named config.default. Copy this to a file named config and set the proper 
 configuration values.
 
 ````
-PROJECT_PATH="/var/www/parbake.org" #Path to the project, the folder into which the app directory will be deployed
+PROJECT_PATH="/var/www/jsc.org" #Path to the project, the folder into which the app directory will be deployed
 APACHE_PROCESS="www-data" #Apache process, probably www-data
 USER="user" #probably the user name you used to log on to this machine with
 AS='sudo' #sudo or root depending on the OS Ubuntu would probably be sudo, Debian would probably be root
@@ -19,7 +19,7 @@ REPOS="
 	/,app,git@github.com:parbake/parbake.git,write
 	--Config
 	/app,Config,git@github.com:parbake/Config.git,write
-	--Parbake_Plugins
+	--JSC_Plugins
 	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
 	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
 	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write

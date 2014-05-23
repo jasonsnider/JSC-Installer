@@ -10,7 +10,7 @@ REPOS="
 	/,app,git@github.com:microtrain/parbake.git,write
 	--Config
 	/app,Config,git@github.com:microtrain/ctw-config.git,write
-	--Parbake_Plugins
+	--JSC_Plugins
 	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
 	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
 	/app/Plugin,Utilities,git@github.com:parbake/Utilities-plugin.git,write
