@@ -2,12 +2,12 @@
 # chicagotechworks.com
 PROJECT_PATH="/var/www/chicagotechworks.com"
 APACHE_PROCESS="www-data"
-USER="jasonsnider"
+USER="production"
 AS="sudo" #root or sudo
 
 REPOS="
 	--App
-	/,app,git@github.com:microtrain/parbake.git,write
+	/,app,git@github.com:parbake/parbake.git,write
 	--Config
 	/app,Config,git@github.com:microtrain/ctw-config.git,write
 	--JSC_Plugins
@@ -22,14 +22,7 @@ REPOS="
 	/app/Plugin,DebugKit,https://github.com/cakephp/debug_kit.git,read
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
-        #--Project_specific_repositories
+        --Project_specific_repositories
         /app/Plugin,Ctw,git@github.com:microtrain/ctw.git,write
+	/app/View/Themed,Ctw,git@github.com:microtrain/ctw-theme.git,write
 "
-
-
-	#--Project_specific_repositories
-	#/app/Plugin,Sarah,ssh://git@bitbucket.org/jasonsnider/Sarah-plugin.git,write
-	#--Project_Theme(s)
-	#/app/View/Themed,SarahSnider,ssh://git@bitbucket.org/jasonsnider/SarahSnider-theme.git,write
-
-
