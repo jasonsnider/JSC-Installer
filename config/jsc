@@ -26,6 +26,7 @@ REPOS="
 	/app/Plugin,Jsc,git@github.com:jasonsnider/Jsc-plugin.git,write
 	--Project_Theme(s)
 	/app/View/Themed,JasonSniderTbs,git@github.com:jasonsnider/JasonSniderTbs-theme.git,write
+        /app/View/Themed,Jsc,git@github.com:jasonsnider/Jsc-theme.git,write
 "
 
 #	/app/Plugin,JSC,git@github.com:jasonsnider/JSC-plugin.git,write
