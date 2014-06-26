@@ -2,7 +2,7 @@
 # chicagotechworks.com
 PROJECT_PATH="/var/www/chicagotechworks.com"
 APACHE_PROCESS="www-data"
-USER="production"
+USER="jasonsnider"
 AS="sudo" #root or sudo
 
 REPOS="
