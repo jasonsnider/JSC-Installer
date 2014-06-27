@@ -7,13 +7,11 @@ AS="sudo" #root or sudo
 
 REPOS="
 	--App
-	/,app,git@github.com:jasonsnider/jsc.git,write
-	--Config
-	/app,Config,ssh://git@bitbucket.org/jasonsnider/config-sarahsniderlmt.com.git,write
+	/,app,git@github.com:jasonsnider/jsc-app.git,write
 	--JSC_Plugins
-	/app/Plugin,Config,git@bitbucket.org:jasonsnider/svs-config.git,write
-	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
-	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
+	/app/Plugin,Config,git@bitbucket.org:jasonsnider/jsc-sarahsniderlmt.com-config.git,write
+	/app/Plugin,Contents,git@github.com:jasonsnider/jsc-contents-plugin.git,write
+	/app/Plugin,Users,git@github.com:jasonsnider/jsc-users-plugin.git,write
 	/app/Plugin,Jsc,git@github.com:jasonsnider/jsc-plugin.git,write
 	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
@@ -24,9 +22,8 @@ REPOS="
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 	--Project_specific_repositories
-	/app/Plugin,Sarah,ssh://git@bitbucket.org/jasonsnider/Sarah-plugin.git,write
+	/app/Plugin,Sarah,git@bitbucket.org:jasonsnider/jsc-sarahsniderlmt.com-plugin.git,write
 	--Project_Theme(s)
-	/app/View/Themed,SarahSnider,ssh://git@bitbucket.org/jasonsnider/SarahSnider-theme.git,write
+	/app/View/Themed,Default,git@github.com:jasonsnider/jsc-theme.git,write
+	/app/View/Themed,SarahSnider,git@bitbucket.org:jasonsnider/jsc-sarahsniderlmt.com-theme.git,write
 "
-
-
