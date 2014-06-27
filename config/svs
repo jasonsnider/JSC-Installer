@@ -7,14 +7,14 @@ AS="sudo" #root or sudo
 
 REPOS="
 	--App
-	/,app,git@github.com:parbake/parbake.git,write
+	/,app,git@github.com:jasonsnider/jsc.git,write
 	--Config
 	/app,Config,ssh://git@bitbucket.org/jasonsnider/config-sarahsniderlmt.com.git,write
 	--JSC_Plugins
 	/app/Plugin,Config,git@bitbucket.org:jasonsnider/svs-config.git,write
 	/app/Plugin,Contents,git@github.com:parbake/Contents-plugin.git,write
 	/app/Plugin,Users,git@github.com:parbake/Users-plugin.git,write
-	/app/Plugin,Jsc,git@github.com:parbake/jsc-plugin.git,write
+	/app/Plugin,Jsc,git@github.com:jasonsnider/jsc-plugin.git,write
 	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
 	--CakePHP_and_CakeDC_Plugins
