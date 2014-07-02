@@ -7,7 +7,7 @@ AS="sudo" #root or sudo
 
 REPOS="
 	--App
-	/,app,git@github.com:jasonsnider/jsc-app.git,write
+	,app,git@github.com:jasonsnider/jsc-app.git,write
 	--JSC_Plugins
 	/app/Plugin,Config,git@bitbucket.org:jasonsnider/jsc-jasonsnider.com-config.git,write
 	/app/Plugin,Contents,git@github.com:jasonsnider/jsc-contents-plugin.git,write
@@ -22,8 +22,8 @@ REPOS="
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 	--Project_specific_repositories
-	/app/Plugin,JasonSnider,git@bitbucket.org:jasonsnider/jsc-jasonsnider.com-plugin.git,write
+	/app/Plugin,JasonSnider,git@github.com:jasonsnider/jsc-jasonsnider.com-plugin.git,write
 	--Project_Theme(s)
-	/app/View/Themed,Default,git@bitbucket.org:jasonsnider/jsc-theme.git,write
-	/app/View/Themed,JasonSnider,git@bitbucket.org:jasonsnider/jsc-jasonsnider.com-theme.git,write
+	/app/View/Themed,Default,git@github.com:jasonsnider/jsc-theme.git,write
+	/app/View/Themed,JasonSnider,git@github.com:jasonsnider/jsc-jasonsnider.com-theme.git,write
 "
