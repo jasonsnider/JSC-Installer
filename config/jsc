@@ -7,7 +7,7 @@ AS="sudo" #root or sudo
 
 REPOS="
 	--App
-	/,app,git@github.com:jasonsnider/jsc-app.git,write
+	,app,git@github.com:jasonsnider/jsc-app.git,write
 	--JSC_Plugins
 	/app/Plugin,Config,git@bitbucket.org:jasonsnider/jsc-jasonsnider.com-config.git,write
 	/app/Plugin,Contents,git@github.com:jasonsnider/jsc-contents-plugin.git,write
