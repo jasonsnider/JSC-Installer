@@ -26,5 +26,5 @@ REPOS="
 	--Project_specific_repositories
 	/app/Plugin,Ctw,git@github.com:microtrain/ctw.git,write
 	/app/View/Themed,Ctw,git@github.com:microtrain/ctw-theme.git,write
-	/app/Plugin,Config,git@bitbucket.org:microtrain/jsc-chicagotechworks.com-config.git,write
+	/app/Plugin,Config,git@github.com:microtrain/jsc-chicagotechworks.com-config.git,write
 "
