@@ -2,16 +2,16 @@
 # chicagotechworks.com
 PROJECT_PATH="/var/www/chicagotechworks.com"
 APACHE_PROCESS="www-data"
-USER="jasonsnider"
+USER="jason"
 AS="sudo" #root or sudo
 
 REPOS="
 	--App
-	,app,git@github.com:jasonsnider/jsc-app.git,write
+	,app,git@github.com:parbake/parbake-app.git,write
 	--JSC_Plugins
-	/app/Plugin,Contents,git@github.com:jasonsnider/parbake/parbake-contents-plugin.git,write
-	/app/Plugin,Users,git@github.com:jasonsnider/parbake/parbake-users-plugin.git,write
-	/app/Plugin,Jsc,git@github.com:jasonsnider/parbake/parbake-plugin.git,write
+	/app/Plugin,Contents,git@github.com:parbake/parbake-contents-plugin.git,write
+	/app/Plugin,Users,git@github.com:parbake/parbake-users-plugin.git,write
+	/app/Plugin,Jsc,git@github.com:parbake/parbake-plugin.git,write
 	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
 	--CakePHP_and_CakeDC_Plugins
@@ -21,7 +21,7 @@ REPOS="
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 	--ProjectThemes
-	/app/View/Themed,Default,git@github.com:jasonsnider/parbake-parbake-theme.git,write
+	/app/View/Themed,Default,git@github.com:parbake/-parbake-theme.git,write
 
 	--Project_specific_repositories
 	/app/Plugin,Ctw,git@github.com:microtrain/ctw.git,write
