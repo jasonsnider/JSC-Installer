@@ -21,10 +21,9 @@ REPOS="
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 	--ProjectThemes
-	/app/View/Themed,Default,git@github.com:parbake/-parbake-theme.git,write
+	/app/View/Themed,Default,git@github.com:parbake/parbake-theme.git,write
 
 	--Project_specific_repositories
-        /app/Plugin,Default,git@github.com:parbake/parbake-theme.git,write
 	/app/Plugin,Ctw,git@github.com:microtrain/ctw.git,write
 	/app/View/Themed,Ctw,git@github.com:microtrain/ctw-theme.git,write
 	/app/Plugin,Config,git@github.com:microtrain/jsc-chicagotechworks.com-config.git,write
