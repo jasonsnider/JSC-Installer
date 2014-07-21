@@ -2,7 +2,7 @@
 # chicagotechworks.com
 PROJECT_PATH="/var/www/chicagotechworks.com"
 APACHE_PROCESS="www-data"
-USER="jason"
+USER="ldimov"
 AS="sudo" #root or sudo
 
 REPOS="
@@ -12,6 +12,7 @@ REPOS="
 	/app/Plugin,Contents,git@github.com:parbake/parbake-contents-plugin.git,write
 	/app/Plugin,Users,git@github.com:parbake/parbake-users-plugin.git,write
 	/app/Plugin,Jsc,git@github.com:parbake/parbake-plugin.git,write
+	/app/Plugin,Uploads,git@github.com:parbake/parbake-uploads-plugin.git,write
 	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
 	--CakePHP_and_CakeDC_Plugins
