@@ -10,9 +10,9 @@ REPOS="
 	,app,git@github.com:jasonsnider/jsc-app.git,write
 	--JSC_Plugins
 	/app/Plugin,Config,git@bitbucket.org:jasonsnider/jsc-jasonsnider.com-config.git,write
-	/app/Plugin,Contents,git@github.com:jasonsnider/jsc-contents-plugin.git,write
-	/app/Plugin,Users,git@github.com:jasonsnider/jsc-users-plugin.git,write
-	/app/Plugin,Jsc,git@github.com:jasonsnider/jsc-plugin.git,write
+	/app/Plugin,Contents,git@github.com:parbake/parbake-contents-plugin.git,write
+	/app/Plugin,Users,git@github.com:parbake/parbake-users-plugin.git,write
+	/app/Plugin,Jsc,git@github.com:parbake/parbake-plugin.git,write
 	--Third_Party_Plugins
 	/app/Plugin,AuditLog,git@github.com:jasonsnider/CakePHP-Audit-Log-Plugin.git,read
 	--CakePHP_and_CakeDC_Plugins
@@ -22,8 +22,8 @@ REPOS="
 	--Vendors
 	/app/Vendor,HtmlPurifier,git://repo.or.cz/htmlpurifier.git,read
 	--Project_specific_repositories
-	/app/Plugin,JasonSnider,git@github.com:jasonsnider/jsc-jasonsnider.com-plugin.git,write
+	/app/Plugin,JasonSnider,git@github.com:parbake/parbake-jasonsnider.com-plugin.git,write
 	--Project_Theme(s)
-	/app/View/Themed,Default,git@github.com:jasonsnider/jsc-theme.git,write
-	/app/View/Themed,JasonSnider,git@github.com:jasonsnider/jsc-jasonsnider.com-theme.git,write
+	/app/View/Themed,Default,git@github.com:parbake/parbake-theme.git,write
+	/app/View/Themed,JasonSnider,git@github.com:parbake/parbake-jasonsnider.com-theme.git,write
 "
